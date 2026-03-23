@@ -1,10 +1,16 @@
 const GRID_SIZE = 10;        // Total items needed to collect
 let gridData = [];          // 2D array, each item is an individual cell in the grid
 const NUM_BOMBS = 10;        // Number of contaminant cells to place in the grid
+const TOTAL_SAFE_SPACES = (GRID_SIZE * GRID_SIZE) - NUM_BOMBS;
+let revealedSafeSpaces = 0;
 
 const startBtn = document.getElementById("start-game");
 const playAgainBtn = document.getElementById("play-again");
 const restartBtn = document.getElementById("restart-game");
+const revealedSpacesEl = document.getElementById("revealed-spaces");
+const totalSafeSpacesEl = document.getElementById("total-safe-spaces");
+
+totalSafeSpacesEl.textContent = TOTAL_SAFE_SPACES;
 
 startBtn.addEventListener("click", startGame);
 playAgainBtn.addEventListener("click", goToStart);
@@ -16,6 +22,10 @@ function showScreen(screenId) {
   document.getElementById("end-screen").style.display = "none";
 
   document.getElementById(screenId).style.display = "block";
+}
+
+function updateRevealedSpacesTracker() {
+  revealedSpacesEl.textContent = revealedSafeSpaces;
 }
 
 // Creates the 10x10 game grid, each cell will be its own object,
@@ -128,6 +138,8 @@ function handleCellClick(event) {
     endGame(false);
     return;
   } else {
+    revealedSafeSpaces++;
+    updateRevealedSpacesTracker();
     // this will show in HTML, whatever the # of adjacent bombs is for the clicked cell
     event.target.textContent = cellData.adjacentBombs;
   }
@@ -154,6 +166,8 @@ function checkWin() {
 }
 
 function startGame() {
+  revealedSafeSpaces = 0;
+  updateRevealedSpacesTracker();
   showScreen("game-screen");
   createGrid();
   placeBombs();
