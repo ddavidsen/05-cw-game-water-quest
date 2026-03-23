@@ -23,11 +23,15 @@ Fonts:
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Avenir", Arial, sans-serif;
   margin: 0;
   padding: 30px;
-  background-color: #f0f0f0;
+  background-color: #2e9df7;
   color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Proxima Nova", "Avenir", Arial, sans-serif;
 }
 
 .start-screen, .game-screen, .end-screen {
@@ -68,7 +72,7 @@ h1 img {
 }
 
 .grid-cell {
-  background-color: #e8e8e8;
+  background-color: #ffc907;
   border-radius: 8px;
   aspect-ratio: 1;
   display: flex;
@@ -81,7 +85,7 @@ h1 img {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4fcb53;
   color: white;
   border: none;
   padding: 12px 24px;

@@ -123,8 +123,8 @@ function handleCellClick(event) {
 
   cellData.isRevealed = true;
 
-  if (cellData.isBomb) {
-    event.target.textContent = "💣";
+    if (cellData.isBomb) {
+      event.target.textContent = "🧪";
     endGame(false);
     return;
   } else {
@@ -166,7 +166,11 @@ function goToStart() {
 
 function endGame(win) {
   const msg = document.getElementById("end-message");
-  msg.textContent = win ? "You Win! 🎉" : "Game Over 💣";
+  if (win) {
+    msg.textContent = "You Win! 🎉";
+  } else {
+    msg.textContent = "Game Over 🧪";
+  }
 
   showScreen("end-screen");
 }
